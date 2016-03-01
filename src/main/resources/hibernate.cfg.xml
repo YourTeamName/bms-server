@@ -5,10 +5,10 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.url">
-            jdbc:mysql://jed0610.gotoftp3.com:3306/jed0610
+            jdbc:mysql://localhost:3306/bms
         </property>
         <!--数据库用户 -->
-        <property name="connection.username">jed0610</property>
+        <property name="connection.username">root</property>
         <!--数据库用户密码 -->
         <property name="connection.password">Yangjianing0610</property>
         <!--数据库JDBC驱动 -->
@@ -25,8 +25,8 @@
         <property name="show_sql">true</property>
         <!--是否格式化SQL -->
         <property name="format_sql">true</property>
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
+
+        <!-- C3P0 configurations -->
         <property name="hibernate.connection.provider_class">
             org.hibernate.c3p0.internal.C3P0ConnectionProvider
         </property>
@@ -37,5 +37,14 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
         <property name="hibernate.c3p0.acquire_increment">2</property>
         <property name="hibernate.c3p0.validate">false</property>
+
+        <!-- DB schema will be updated if needed -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="edu.gatech.buzzmovieselector.server.entity.User"/>
+        <mapping class="edu.gatech.buzzmovieselector.server.entity.Profile"/>
+        <mapping class="edu.gatech.buzzmovieselector.server.entity.Review"/>
+        <mapping class="edu.gatech.buzzmovieselector.server.entity.Movie"/>
+
     </session-factory>
 </hibernate-configuration>

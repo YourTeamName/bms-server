@@ -1,6 +1,13 @@
 package edu.gatech.buzzmovieselector.server.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "profile")
 public class Profile {
 
     public static final String[] USER_DEGREES = {"", "Architecture",
@@ -26,10 +33,16 @@ public class Profile {
             "Sciences", "Physics",
             "Psychology", "Computational Science and Engineering"};
 
+    @Id
+    @GeneratedValue
     private Integer id;
+    @Column(name = "firstName")
     private String firstName;
+    @Column(name = "lastName")
     private String lastName;
+    @Column(name = "major")
     private String major;
+    @Column(name = "email")
     private String email;
 
     /**

@@ -64,7 +64,7 @@ public class HibernateSessionFactory {
      */
     public static void rebuildSessionFactory() {
         try {
-            configuration.configure(configFile);
+            configuration = configuration.configure(configFile);
             serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(
                             configuration.getProperties()).build();

@@ -2,8 +2,10 @@ package edu.gatech.buzzmovieselector.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,14 +37,14 @@ public class User {
     }
 
     @Id
-    @GeneratedValue
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
     @Column(name = "userLevel")
+    @Enumerated(EnumType.STRING)
     private UserLevel userLevel;
-
+    @OneToOne
     private Profile profile;
 
     public String getUsername() {

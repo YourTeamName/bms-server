@@ -101,7 +101,7 @@ public abstract class DaoImpl<T, ID extends Serializable> implements Dao<T,
     }
 
     public void createOrUpdate(T data) throws SQLException {
-        Session session = null;
+        Session session = HibernateSessionFactory.getSession();
         Transaction tx = null;
         try {
             session = HibernateSessionFactory.getSession();
