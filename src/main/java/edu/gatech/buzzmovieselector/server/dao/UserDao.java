@@ -1,7 +1,9 @@
 package edu.gatech.buzzmovieselector.server.dao;
 
+import edu.gatech.buzzmovieselector.server.entity.User;
+
 /**
- * Created by yangjianing on 2/22/16.
+ * User DAO which has a String id (User.username)
  */
-public class UserDao {
+public interface UserDao extends Dao<User, String> {
 }

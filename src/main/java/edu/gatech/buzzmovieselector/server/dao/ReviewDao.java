@@ -1,7 +1,9 @@
 package edu.gatech.buzzmovieselector.server.dao;
 
+import edu.gatech.buzzmovieselector.server.entity.Review;
+
 /**
- * Created by yangjianing on 2/24/16.
+ * Review DAO which has a Integer id (Review.id)
  */
-public class ReviewDao {
+public interface ReviewDao extends Dao<Review, Integer> {
 }

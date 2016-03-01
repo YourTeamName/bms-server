@@ -4,11 +4,38 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url"/>
-        <property name="connection.driver_class"/>
-        <property name="connection.username"/>
-        <property name="connection.password"/>
+        <property name="connection.url">
+            jdbc:mysql://jed0610.gotoftp3.com:3306/jed0610
+        </property>
+        <!--数据库用户 -->
+        <property name="connection.username">jed0610</property>
+        <!--数据库用户密码 -->
+        <property name="connection.password">Yangjianing0610</property>
+        <!--数据库JDBC驱动 -->
+        <property name="connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <!--每个数据库都有其对应的Dialect以匹配其平台特性 -->
+        <property name="dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <!--指定当前session范围和上下文 -->
+        <property name="current_session_context_class">thread</property>
+        <!--是否将运行期生成的SQL输出到日志以供调试 -->
+        <property name="show_sql">true</property>
+        <!--是否格式化SQL -->
+        <property name="format_sql">true</property>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
+        <property name="hibernate.connection.provider_class">
+            org.hibernate.c3p0.internal.C3P0ConnectionProvider
+        </property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.timeout">5000</property>
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <property name="hibernate.c3p0.acquire_increment">2</property>
+        <property name="hibernate.c3p0.validate">false</property>
     </session-factory>
 </hibernate-configuration>

@@ -1,7 +1,9 @@
 package edu.gatech.buzzmovieselector.server.dao;
 
+import edu.gatech.buzzmovieselector.server.entity.Movie;
+
 /**
- * Created by yangjianing on 2/24/16.
+ * Movie DAO which has a Integer id (Movie.id)
  */
-public class MovieDao {
+public interface MovieDao extends Dao<Movie, Integer> {
 }
