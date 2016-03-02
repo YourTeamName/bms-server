@@ -6,6 +6,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  * Configures and provides access to Hibernate sessions, tied to the
  * current thread of execution.  Follows the Thread Local Session
@@ -68,12 +71,35 @@ public class HibernateSessionFactory {
             serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(
                             configuration.getProperties()).build();
+            parseDBUri();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Exception e) {
             System.err
                     .println("%%%% Error Creating SessionFactory %%%%");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Parse database connection information
+     *
+     * @throws URISyntaxException the string cannot be parsed as URI
+     */
+    public static void parseDBUri() throws URISyntaxException {
+        configuration.setProperty("hibernate.connection.url",
+                System.getenv("DATABASE_URL"));
+
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':'
+                + dbUri.getPort() + dbUri.getPath();
+        configuration
+                .setProperty("hibernate.connection.username", username);
+        configuration
+                .setProperty("hibernate.connection.password", password);
+        configuration.setProperty("hibernate.connection.url", dbUrl);
     }
 
     /**
