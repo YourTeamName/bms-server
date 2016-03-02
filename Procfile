@@ -1,0 +1,1 @@
+web: java -cp target/classes:target/dependency/* edu.gatech.buzzmovieselector.server.heroku.Main
