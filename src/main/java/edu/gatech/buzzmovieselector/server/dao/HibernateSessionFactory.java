@@ -71,7 +71,7 @@ public class HibernateSessionFactory {
             serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(
                             configuration.getProperties()).build();
-            parseDBUri();
+            //parseDBUri();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Exception e) {
             System.err
