@@ -29,7 +29,7 @@ public class MyResource {
     public String getIt() throws Exception {
         UserDao ud = new UserDaoImpl();
         User user = new User();
-        user.setUsername("jed");
+        user.setUsername("jed1");
         user.setPassword("jed");
         user.setUserLevel(User.UserLevel.USER);
         ud.createOrUpdate(user);
