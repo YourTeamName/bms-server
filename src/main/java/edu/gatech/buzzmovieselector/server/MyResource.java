@@ -1,5 +1,12 @@
 package edu.gatech.buzzmovieselector.server;
 
+import edu.gatech.buzzmovieselector.server.dao.HibernateSessionFactory;
+import edu.gatech.buzzmovieselector.server.dao.UserDao;
+import edu.gatech.buzzmovieselector.server.dao.impl.UserDaoImpl;
+import edu.gatech.buzzmovieselector.server.entity.User;
+import org.hibernate.Session;
+import org.hibernate.bytecode.buildtime.spi.ExecutionException;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,7 +26,13 @@ public class MyResource {
      */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() {
+    public String getIt() throws Exception {
+        UserDao ud = new UserDaoImpl();
+        User user = new User();
+        user.setUsername("jed");
+        user.setPassword("jed");
+        user.setUserLevel(User.UserLevel.USER);
+        ud.createOrUpdate(user);
         return "Hello, Heroku!";
     }
 }
