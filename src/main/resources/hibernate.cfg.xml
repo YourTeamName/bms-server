@@ -39,7 +39,7 @@
         <property name="hibernate.c3p0.validate">false</property>
 
         <!-- DB schema will be updated if needed -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create-drop</property>
 
         <mapping class="edu.gatech.buzzmovieselector.server.entity.User"/>
         <mapping class="edu.gatech.buzzmovieselector.server.entity.Profile"/>
