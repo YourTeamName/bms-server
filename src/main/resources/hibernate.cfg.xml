@@ -4,6 +4,13 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+        <property name="connection.url">
+            dummy
+        </property>
+        <!--数据库用户 -->
+        <property name="connection.username">dummy</property>
+        <!--数据库用户密码 -->
+        <property name="connection.password">dummy</property>
         <!--数据库JDBC驱动 -->
         <property name="connection.driver_class">
             org.postgresql.Driver
