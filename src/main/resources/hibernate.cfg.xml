@@ -37,6 +37,8 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>
         <property name="hibernate.c3p0.acquire_increment">2</property>
         <property name="hibernate.c3p0.validate">false</property>
+        <property name="hibernate.c3p0.privilegeSpawnedThreads">true</property>
+        <property name="hibernate.c3p0.contextClassLoaderSource">true</property>
 
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
