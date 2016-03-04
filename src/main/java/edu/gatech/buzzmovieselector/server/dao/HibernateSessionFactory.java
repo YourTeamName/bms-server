@@ -93,7 +93,7 @@ public class HibernateSessionFactory {
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':'
-                + dbUri.getPort() + dbUri.getPath();
+                + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
         standardRegistryBuilder.applySetting("hibernate.connection.username",
                 username)
                 .applySetting("hibernate.connection.password", password)
