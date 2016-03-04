@@ -4,10 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -31,10 +28,9 @@ public class HibernateSessionFactory {
     private static String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";
     private static final ThreadLocal<Session> threadLocal = new
             ThreadLocal<Session>();
-    private static Configuration configuration = new Configuration();
     private static org.hibernate.SessionFactory sessionFactory;
     private static String configFile = CONFIG_FILE_LOCATION;
-    private static ServiceRegistry serviceRegistry;
+    private static StandardServiceRegistryBuilder standardRegistryBuilder;
 
     static {
         rebuildSessionFactory();
@@ -70,12 +66,11 @@ public class HibernateSessionFactory {
      */
     public static void rebuildSessionFactory() {
         try {
-            //parseDBUri();
-            StandardServiceRegistry standardRegistry = new
-                    StandardServiceRegistryBuilder()
-                    .configure(configFile)
-                    .build();
-            Metadata metadata = new MetadataSources(standardRegistry)
+            standardRegistryBuilder = new StandardServiceRegistryBuilder()
+                    .configure(configFile);
+            parseDBUri();
+            Metadata metadata = new MetadataSources(standardRegistryBuilder
+                    .build())
                     .getMetadataBuilder()
                     .build();
 
@@ -93,20 +88,16 @@ public class HibernateSessionFactory {
      * @throws URISyntaxException the string cannot be parsed as URI
      */
     public static void parseDBUri() throws URISyntaxException {
-        configuration.setProperty("hibernate.connection.url",
-                System.getenv("DATABASE_URL"));
-
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':'
                 + dbUri.getPort() + dbUri.getPath();
-        configuration
-                .setProperty("hibernate.connection.username", username);
-        configuration
-                .setProperty("hibernate.connection.password", password);
-        configuration.setProperty("hibernate.connection.url", dbUrl);
+        standardRegistryBuilder.applySetting("hibernate.connection.username",
+                username)
+                .applySetting("hibernate.connection.password", password)
+                .applySetting("hibernate.connection.url", dbUrl);
     }
 
     /**
@@ -141,10 +132,10 @@ public class HibernateSessionFactory {
     }
 
     /**
-     * return hibernate configuration
+     * return Standard Registry Builder (the configuration)
      */
-    public static Configuration getConfiguration() {
-        return configuration;
+    public static StandardServiceRegistryBuilder getStandardRegistryBuilder() {
+        return standardRegistryBuilder;
     }
 
 }
