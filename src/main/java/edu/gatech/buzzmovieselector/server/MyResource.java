@@ -1,8 +1,11 @@
 package edu.gatech.buzzmovieselector.server;
 
 import edu.gatech.buzzmovieselector.server.dao.HibernateSessionFactory;
+import edu.gatech.buzzmovieselector.server.dao.ProfileDao;
 import edu.gatech.buzzmovieselector.server.dao.UserDao;
+import edu.gatech.buzzmovieselector.server.dao.impl.ProfileDaoImpl;
 import edu.gatech.buzzmovieselector.server.dao.impl.UserDaoImpl;
+import edu.gatech.buzzmovieselector.server.entity.Profile;
 import edu.gatech.buzzmovieselector.server.entity.User;
 import org.hibernate.Session;
 import org.hibernate.bytecode.buildtime.spi.ExecutionException;
@@ -32,7 +35,17 @@ public class MyResource {
         user.setUsername("jed1");
         user.setPassword("jed");
         user.setUserLevel(User.UserLevel.USER);
-        ud.createOrUpdate(user);
+
+        Profile profile = new Profile();
+        profile.setEmail("jed@jedc.com");
+        user.setProfile(profile);
+
+        ProfileDao pd = new ProfileDaoImpl();
+
+        HibernateSessionFactory.getSession();
+
+//        pd.createOrUpdate(profile);
+//        ud.createOrUpdate(user);
         return "Hello, Heroku!";
     }
 }
