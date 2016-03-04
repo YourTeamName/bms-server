@@ -1,5 +1,6 @@
 package edu.gatech.buzzmovieselector.server.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -41,10 +42,10 @@ public class User {
     private String username;
     @Column(name = "password")
     private String password;
-    @Column(name = "userLevel")
+    @Column(name = "userlevel")
     @Enumerated(EnumType.STRING)
     private UserLevel userLevel;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
 
     public String getUsername() {

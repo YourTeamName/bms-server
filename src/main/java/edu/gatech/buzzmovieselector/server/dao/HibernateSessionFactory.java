@@ -2,6 +2,9 @@ package edu.gatech.buzzmovieselector.server.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
@@ -67,12 +70,16 @@ public class HibernateSessionFactory {
      */
     public static void rebuildSessionFactory() {
         try {
-            configuration = configuration.configure(configFile);
-            serviceRegistry = new StandardServiceRegistryBuilder()
-                    .applySettings(
-                            configuration.getProperties()).build();
             //parseDBUri();
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            StandardServiceRegistry standardRegistry = new
+                    StandardServiceRegistryBuilder()
+                    .configure(configFile)
+                    .build();
+            Metadata metadata = new MetadataSources(standardRegistry)
+                    .getMetadataBuilder()
+                    .build();
+
+            sessionFactory = metadata.getSessionFactoryBuilder().build();
         } catch (Exception e) {
             System.err
                     .println("%%%% Error Creating SessionFactory %%%%");

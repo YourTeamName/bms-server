@@ -164,7 +164,6 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
-                    <contextPath>/</contextPath>
                     <webApp>
                         <contextPath>/</contextPath>
                         <webInfIncludeJarPattern>.*/.*jersey-[^/]\.jar$</webInfIncludeJarPattern>
@@ -179,6 +178,6 @@
         <hibernate.version>5.1.0.Final</hibernate.version>
         <jersey.version>2.22.2</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jetty.version>9.0.6.v20130930</jetty.version>
+        <jetty.version>9.3.7.v20160115</jetty.version>
     </properties>
 </project>

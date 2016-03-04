@@ -13,8 +13,7 @@ public class Main {
 
 
     public static void main(String[] args) throws Exception {
-
-        HibernateSessionFactory.rebuildSessionFactory();
+        HibernateSessionFactory.getSession();
 
         // The port that we should run on can be set into an environment
         // variable
