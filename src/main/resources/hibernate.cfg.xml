@@ -8,9 +8,9 @@
             jdbc:postgresql://ec2-54-227-250-148.compute-1.amazonaws.com:5432/d8tpfq59foerfc?sslmode=require
         </property>
         <!--数据库用户 -->
-        <property name="connection.username">soxhvsqqzsthxi</property>
+        <property name="connection.username">mjxyrgqkjlyrho</property>
         <!--数据库用户密码 -->
-        <property name="connection.password">ps-COPL-YSD2oMAZjYrVBzvFd4</property>
+        <property name="connection.password">lkNDySTj26YzRXDEBrVn_rQZTU</property>
         <!--数据库JDBC驱动 -->
         <property name="connection.driver_class">
             org.postgresql.Driver

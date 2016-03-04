@@ -2,6 +2,7 @@ package edu.gatech.buzzmovieselector.server;
 
 import javax.ws.rs.core.Application;
 
+import edu.gatech.buzzmovieselector.server.dao.HibernateSessionFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 
