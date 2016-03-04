@@ -9,6 +9,46 @@ import org.eclipse.jetty.webapp.WebAppContext;
  */
 public class Main {
 
+    private static URI getBaseURI(String hostname, int port) {
+        return UriBuilder.fromUri("http://0.0.0.0/").port(port).build();
+    }
+
+    protected static HttpServer startServer(URI uri) throws IOException {
+        System.out.println("Starting grizzly...");
+        ResourceConfig rc = new PackagesResourceConfig("com.agile.spirit.openapi");
+        return GrizzlyServerFactory.createHttpServer(uri, rc);
+    }
+
+    public static void main(String[] args) throws IOException {
+        String hostname = System.getenv("HOSTNAME");
+        if (hostname == null) {
+            hostname = "localhost";
+        }
+
+        boolean isOnLocal = false;
+        String port = System.getenv("PORT");
+        if (port == null) {
+            isOnLocal = true;
+            port = "9998";
+        }
+
+        URI uri = getBaseURI(hostname, Integer.valueOf(port));
+
+        HttpServer httpServer = startServer(uri);
+        System.out.println(String.format("Jersey app started with WADL available at "
+                + "%sapplication.wadl\nHit enter to stop it...", uri, uri));
+        if (isOnLocal) {
+            System.in.read();
+            httpServer.stop();
+        } else {
+            while (true) {
+                System.in.read();
+            }
+        }
+
+    }
+
+    /*
     public static void main(String[] args) throws Exception{
         // The port that we should run on can be set into an environment variable
         // Look for that variable and default to 8080 if it isn't there.
@@ -36,5 +76,5 @@ public class Main {
 
         server.start();
         server.join();
-    }
+    }*/
 }
