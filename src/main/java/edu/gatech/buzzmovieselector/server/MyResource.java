@@ -49,8 +49,8 @@ public class MyResource {
                             configuration.getProperties()).build();
             //parseDBUri();
             System.err.println("shitty stuff");
-            SessionFactory sessionFactory = configuration.buildSessionFactory
-                    (serviceRegistry);
+//            SessionFactory sessionFactory = configuration.buildSessionFactory
+//                    (serviceRegistry);
         } catch (Exception e) {
             System.err
                     .println("%%%% Error Creating SessionFactory %%%%");
