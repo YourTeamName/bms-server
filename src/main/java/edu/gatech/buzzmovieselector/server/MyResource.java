@@ -42,15 +42,16 @@ public class MyResource {
 
         try {
             Configuration configuration = new Configuration();
-            configuration = configuration.configure("/hibernate.cfg.xml");
-            ServiceRegistry serviceRegistry = new
-                    StandardServiceRegistryBuilder()
-                    .applySettings(
-                            configuration.getProperties()).build();
-            //parseDBUri();
-            System.err.println("shitty stuff");
-            SessionFactory sessionFactory = configuration.buildSessionFactory
-                    (serviceRegistry);
+            throw new Exception("SHIT!!!1");
+//            configuration = configuration.configure("/hibernate.cfg.xml");
+//            ServiceRegistry serviceRegistry = new
+//                    StandardServiceRegistryBuilder()
+//                    .applySettings(
+//                            configuration.getProperties()).build();
+//            //parseDBUri();
+//            System.err.println("shitty stuff");
+//            SessionFactory sessionFactory = configuration.buildSessionFactory
+//                    (serviceRegistry);
         } catch (Exception e) {
             System.err
                     .println("%%%% Error Creating SessionFactory %%%%");
