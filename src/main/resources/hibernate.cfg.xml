@@ -26,6 +26,9 @@
         <!--是否格式化SQL -->
         <property name="format_sql">true</property>
 
+        <property name="hibernate.jdbc.use_get_generated_keys">true</property>
+        <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+
         <!-- C3P0 configurations -->
         <property name="hibernate.connection.provider_class">
             org.hibernate.c3p0.internal.C3P0ConnectionProvider
