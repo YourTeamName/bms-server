@@ -66,14 +66,12 @@ public class HibernateSessionFactory {
      * Rebuild hibernate session factory
      */
     public static void rebuildSessionFactory() {
-        System.err.println("shitty stuff1");
         try {
             configuration = configuration.configure(configFile);
             serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(
                             configuration.getProperties()).build();
             //parseDBUri();
-            System.err.println("shitty stuff");
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Exception e) {
             System.err
