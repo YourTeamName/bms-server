@@ -66,6 +66,7 @@ public class HibernateSessionFactory {
      * Rebuild hibernate session factory
      */
     public static void rebuildSessionFactory() {
+        System.err.println("shitty stuff1");
         try {
             configuration = configuration.configure(configFile);
             serviceRegistry = new StandardServiceRegistryBuilder()
