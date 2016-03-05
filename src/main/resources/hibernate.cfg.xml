@@ -4,13 +4,6 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">
-            jdbc:postgresql://ec2-54-227-250-148.compute-1.amazonaws.com:5432/d8tpfq59foerfc?sslmode=require
-        </property>
-        <!--数据库用户 -->
-        <property name="connection.username">mjxyrgqkjlyrho</property>
-        <!--数据库用户密码 -->
-        <property name="connection.password">lkNDySTj26YzRXDEBrVn_rQZTU</property>
         <!--数据库JDBC驱动 -->
         <property name="connection.driver_class">
             org.postgresql.Driver
