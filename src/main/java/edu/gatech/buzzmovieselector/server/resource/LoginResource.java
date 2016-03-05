@@ -1,0 +1,52 @@
+package edu.gatech.buzzmovieselector.server.resource;
+
+import edu.gatech.buzzmovieselector.server.dao.UserDao;
+import edu.gatech.buzzmovieselector.server.dao.impl.UserDaoImpl;
+import edu.gatech.buzzmovieselector.server.entity.User;
+
+import javax.json.JsonObject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.sql.SQLException;
+
+@Path("/login")
+public class LoginResource {
+
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
+    public User login(JsonObject json) {
+        String username = json.getString("username");
+        String password = json.getString("password");
+        User user = null;
+        try {
+            UserDao userDao = new UserDaoImpl();
+            user = userDao.findById(username);
+            if (!user.getPassword().equals(password)) {
+                user = null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getlogin() {
+        User user = null;
+        try {
+            UserDao userDao = new UserDaoImpl();
+            user = userDao.findById("jed1");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+
+}

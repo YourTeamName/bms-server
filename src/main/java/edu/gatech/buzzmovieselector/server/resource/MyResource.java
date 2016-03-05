@@ -1,4 +1,4 @@
-package edu.gatech.buzzmovieselector.server;
+package edu.gatech.buzzmovieselector.server.resource;
 
 import edu.gatech.buzzmovieselector.server.dao.HibernateSessionFactory;
 import edu.gatech.buzzmovieselector.server.dao.ProfileDao;
@@ -26,8 +26,8 @@ public class MyResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() throws Exception {
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getIt() throws Exception {
         UserDao ud = new UserDaoImpl();
         User user = new User();
         user.setUsername("jed1");
@@ -45,6 +45,6 @@ public class MyResource {
 
         pd.createOrUpdate(profile);
         ud.createOrUpdate(user);
-        return "Hello, Heroku!";
+        return user;
     }
 }

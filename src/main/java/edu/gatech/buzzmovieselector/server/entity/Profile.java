@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "profile")
@@ -59,6 +60,7 @@ public class Profile {
         this.email = email;
     }
 
+    @XmlTransient
     public Integer getId() {
         return id;
     }

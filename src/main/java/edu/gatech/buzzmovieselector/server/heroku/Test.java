@@ -5,6 +5,13 @@ package edu.gatech.buzzmovieselector.server.heroku;
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println(System.getenv("JAVA_HOME"));
+
+        try {
+            throw new Exception("shit!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("reached end");
     }
 }

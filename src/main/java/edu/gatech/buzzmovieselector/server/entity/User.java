@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "\"user\"")
@@ -56,6 +57,7 @@ public class User {
         this.username = username;
     }
 
+    @XmlTransient
     public String getPassword() {
         return password;
     }
