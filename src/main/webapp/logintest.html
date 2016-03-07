@@ -6,8 +6,11 @@
         $(document).ready(function () {
             $("button").click(function () {
                 $.ajax({
-                    url: "http://localhost/login", success: function (result) {
-                        $("#div1").html(result);
+                    type: "GET",
+                    url: "http://localhost:5000/login",
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#div1").html(JSON.stringify(result));
                     }
                 });
                 // $.ajax({
