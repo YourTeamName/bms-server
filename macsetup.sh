@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # abort script if something fails
 set -e
@@ -22,6 +22,10 @@ brew install maven
 
 echo "-- Installing heroku-toolbelt through homebrew"
 brew install heroku-toolbelt
+
+# add heroku git remote
+echo "-- Adding heroku git remote"
+heroku git:remote -a buzz-movie-selector
 
 # set environment variables
 echo "-- Setting heroku evironment variables"
