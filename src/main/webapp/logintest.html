@@ -5,14 +5,6 @@
     <script>
         $(document).ready(function () {
             $("button").click(function () {
-//                $.ajax({
-//                    type: "GET",
-//                    url: window.location.origin + "/login",
-//                    dataType: 'json',
-//                    success: function (result) {
-//                        $("#div1").html(JSON.stringify(result));
-//                    }
-//                });
                 $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -44,7 +36,8 @@ Username:<input type="text" id="username"><br>
 Password:<input type="password" id="password"><br>
 <button>Login</button>
 
-<div id="div1"><h2>Will display user info here if the login was success</h2></div>
+<div id="div1"><h2>Will display user info here if the login was success. You can test this with the username "user" and
+    password "pass"</h2></div>
 
 </body>
 </html>
