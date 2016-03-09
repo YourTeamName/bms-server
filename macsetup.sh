@@ -25,4 +25,4 @@ brew install heroku-toolbelt
 
 # set environment variables
 echo "-- Setting heroku evironment variables"
-heroku config:get DATABASE_URL -s  >> .env
+heroku config:get DATABASE_URL -s --app buzz-movie-selector >> .env
