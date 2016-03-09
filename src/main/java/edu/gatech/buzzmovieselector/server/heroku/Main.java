@@ -1,6 +1,8 @@
 package edu.gatech.buzzmovieselector.server.heroku;
 
 import edu.gatech.buzzmovieselector.server.dao.HibernateSessionFactory;
+import edu.gatech.buzzmovieselector.server.dao.UserDao;
+import edu.gatech.buzzmovieselector.server.dao.impl.UserDaoImpl;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 

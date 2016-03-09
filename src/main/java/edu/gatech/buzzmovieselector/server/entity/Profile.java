@@ -1,5 +1,7 @@
 package edu.gatech.buzzmovieselector.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,7 +62,7 @@ public class Profile {
         this.email = email;
     }
 
-    @XmlTransient
+    @JsonIgnore
     public Integer getId() {
         return id;
     }

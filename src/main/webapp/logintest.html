@@ -5,29 +5,31 @@
     <script>
         $(document).ready(function () {
             $("button").click(function () {
+//                $.ajax({
+//                    type: "GET",
+//                    url: window.location.origin + "/login",
+//                    dataType: 'json',
+//                    success: function (result) {
+//                        $("#div1").html(JSON.stringify(result));
+//                    }
+//                });
                 $.ajax({
-                    type: "GET",
-                    url: "http://localhost:5000/login",
-                    dataType: 'json',
+                    type: "POST", //rest Type
+                    dataType: "json", //mispelled
+                    url: window.location.origin + "/login",
+                    contentType: 'application/json',
+                    accept: "application/json",
+                    data: JSON.stringify({
+                        username: "jedyang",
+                        password: "jedyang"
+                    }),
                     success: function (result) {
                         $("#div1").html(JSON.stringify(result));
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        alert('login error: ' + textStatus);
                     }
                 });
-                // $.ajax({
-
-                //         		// type: "GET", //rest Type
-                //         		// dataType: 'jsonp', //mispelled
-                //         		// url: "http://locaohost:5000/login",
-                //         		// async: false,
-                //         		// //contentType: "application/json; charset=utf-8",
-                //         		// // data: {
-                //         		// // 	username: "jed1",
-                //         		// // 	password: "jed"
-                //         		// // },
-                //         		success: function (result) {
-                //         			$("#div1").html(result);
-                //         		}
-                //         	});
             });
         });
     </script>

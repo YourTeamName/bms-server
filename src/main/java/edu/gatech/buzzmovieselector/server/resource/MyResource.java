@@ -30,21 +30,24 @@ public class MyResource {
     public User getIt() throws Exception {
         UserDao ud = new UserDaoImpl();
         User user = new User();
-        user.setUsername("jed1");
-        user.setPassword("jed");
-        user.setUserLevel(User.UserLevel.USER);
-
-        Profile profile = new Profile();
-        profile.setEmail("jed@jedc.com");
-        user.setProfile(profile);
-
-
-        ProfileDao pd = new ProfileDaoImpl();
-
-        HibernateSessionFactory.getSession();
-
-        pd.createOrUpdate(profile);
-        ud.createOrUpdate(user);
+//        user.setUsername("jed1");
+//        user.setPassword("jed");
+//        user.setUserLevel(User.UserLevel.USER);
+//
+//        Profile profile = new Profile();
+//        profile.setEmail("jed@jedc.com");
+//        user.setProfile(profile);
+//
+//
+//        ProfileDao pd = new ProfileDaoImpl();
+//
+//        HibernateSessionFactory.getSession();
+//
+//        pd.createOrUpdate(profile);
+//        ud.createOrUpdate(user);
+        user.getUsername();
+        user.setUsername("shit");
+        user.setUsername(null);
         return user;
     }
 }

@@ -1,10 +1,10 @@
 package edu.gatech.buzzmovieselector.server.resource;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import edu.gatech.buzzmovieselector.server.dao.UserDao;
 import edu.gatech.buzzmovieselector.server.dao.impl.UserDaoImpl;
 import edu.gatech.buzzmovieselector.server.entity.User;
 
-import javax.json.JsonObject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,11 +17,13 @@ import java.sql.SQLException;
 public class LoginResource {
 
     @POST
-    @Consumes({MediaType.APPLICATION_JSON})
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User login(JsonObject json) {
-        String username = json.getString("username");
-        String password = json.getString("password");
+    public User login(User json) {
+//        String username = json.get("username").asText();
+//        String password = json.get("password").asText();
+        String username = json.getUsername();
+        String password = json.getPassword();
         User user = null;
         try {
             UserDao userDao = new UserDaoImpl();
