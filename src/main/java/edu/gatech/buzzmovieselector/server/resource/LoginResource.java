@@ -28,7 +28,7 @@ public class LoginResource {
         try {
             UserDao userDao = new UserDaoImpl();
             user = userDao.findById(username);
-            if (!user.getPassword().equals(password)) {
+            if (user == null || !user.getPassword().equals(password)) {
                 user = null;
             }
         } catch (SQLException e) {
