@@ -5,26 +5,43 @@
     <script>
         $(document).ready(function () {
             $("button").click(function () {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: window.location.origin + "/login",
-                    contentType: 'application/json',
-                    accept: "application/json",
-                    data: JSON.stringify({
-                        username: $("#username").val(),
-                        password: $("#password").val()
-                    }),
-                    success: function (data, responseText, jqXHR) {
-                        if (jqXHR.status == 204) {
-                            $("#div1").html('Username does not exist or wrong password');
-                        } else {
-                            $("#div1").html(JSON.stringify(data));
-                        }
+//                $.ajax({
+//                    type: "POST",
+//                    dataType: "json",
+//                    url: window.location.origin + "/login",
+//                    contentType: 'application/json',
+//                    accept: "application/json",
+//                    data: JSON.stringify({
+//                        username: $("#username").val(),
+//                        password: $("#password").val()
+//                    }),
+//                    success: function (data, responseText, jqXHR) {
+//                        if (jqXHR.status == 204) {
+//                            $("#div1").html('Username does not exist or wrong password');
+//                        } else {
+//                            $("#div1").html(JSON.stringify(data));
+//                        }
+//                    },
+//                    error: function (jqXHR, textStatus, errorThrown) {
+//                        $("#div1").html('login error: ' + textStatus);
+//                    }
+//                });
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "http://buzz-movie-selector.herokuapp.com/login",
+                    "method": "POST",
+                    "headers": {
+                        "content-type": "application/json",
+                        "cache-control": "no-cache",
+                        "postman-token": "81eacfaa-5ac9-d17f-9ac3-ff681eda2986"
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        $("#div1").html('login error: ' + textStatus);
-                    }
+                    "processData": false,
+                    "data": "{\n\"username\": \"user\",\n\"password\": \"pass\"\n}"
+                };
+
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
                 });
             });
         });

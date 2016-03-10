@@ -28,6 +28,10 @@
             <param-name>jersey.config.servlet.filter.staticContentRegex</param-name>
             <param-value>/.*html</param-value>
         </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+            <param-value>edu.gatech.buzzmovieselector.server.filter.CORSFilter</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>Jersey Filter</filter-name>

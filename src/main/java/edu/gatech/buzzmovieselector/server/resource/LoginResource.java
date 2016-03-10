@@ -19,20 +19,18 @@ public class LoginResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User login(User json) {
-//        String username = json.get("username").asText();
-//        String password = json.get("password").asText();
-        String username = json.getUsername();
-        String password = json.getPassword();
+    public User login(JsonNode json) {
+        String username = json.get("username").asText();
+        String password = json.get("password").asText();
         User user = null;
         try {
             UserDao userDao = new UserDaoImpl();
             user = userDao.findById(username);
-            if (user == null || !user.getPassword().equals(password)) {
-                user = null;
-            }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if (user == null || !user.getPassword().equals(password)) {
+            user = null;
         }
         return user;
     }
