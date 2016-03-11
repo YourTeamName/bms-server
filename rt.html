@@ -10,7 +10,7 @@ var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
 // construct the uri with our apikey
 //var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
 var moviesSearchUrl = baseUrl + '/lists/movies/box_office.json?apikey=' + apikey + '&limit=10';
-var query = "Gone with the Wind";
+var query = "New movies";
 
 $(document).ready(function() {
   $("button").click(function(){
@@ -24,7 +24,7 @@ $(document).ready(function() {
 });
   // callback for when we get back the results
 function searchCallback(data) {
- $(document.body).append('Found ' + data.total + ' results for ' + query);
+ //$(document.body).append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
  $.each(movies, function(index, movie) {
    $(document.body).append('<h1>' + movie.title + '</h1>');
