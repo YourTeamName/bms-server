@@ -17,12 +17,13 @@ import javax.persistence.Table;
 public class User {
 
     /**
-     * enum containing possible UserLevel values
+     * enum containing possible UserStatus values
      */
-    public enum UserLevel {
+    public enum UserStatus {
         USER,
         ADMIN,
-        BANNED;
+        BANNED,
+        LOCKED;
 
         @Override
         public String toString() {
@@ -33,8 +34,10 @@ public class User {
                     return "ADMIN";
                 case BANNED:
                     return "BANNED";
+                case LOCKED:
+                    return "LOCKED";
                 default:
-                    throw new IllegalArgumentException("Invalid UserLevel " +
+                    throw new IllegalArgumentException("Invalid UserStatus " +
                             "enum value");
             }
         }
@@ -45,9 +48,9 @@ public class User {
     private String username;
     @Column(name = "password")
     private String password;
-    @Column(name = "userlevel")
+    @Column(name = "userstatus")
     @Enumerated(EnumType.STRING)
-    private UserLevel userLevel;
+    private UserStatus userStatus;
     @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
 
@@ -69,12 +72,12 @@ public class User {
         this.password = password;
     }
 
-    public UserLevel getUserLevel() {
-        return userLevel;
+    public UserStatus getUserStatus() {
+        return userStatus;
     }
 
-    public void setUserLevel(UserLevel userLevel) {
-        this.userLevel = userLevel;
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
     }
 
     public Profile getProfile() {
@@ -91,31 +94,33 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, UserLevel userLevel) {
+    public User(String username, String password, UserStatus userStatus) {
         this.username = username;
         this.password = password;
-        this.userLevel = userLevel;
+        this.userStatus = userStatus;
     }
 
     public User(String username, String password) {
-        this(username, password, UserLevel.USER);
+        this(username, password, UserStatus.USER);
     }
 
-    public User(String username, String password, String userLevel) {
+    public User(String username, String password, String userStatus) {
         this.username = username;
         this.password = password;
-        UserLevel ul;
-        if (userLevel.equalsIgnoreCase("admin")) {
-            ul = UserLevel.ADMIN;
-        } else if (userLevel.equalsIgnoreCase("user")) {
-            ul = UserLevel.USER;
-        } else if (userLevel.equalsIgnoreCase("banned")) {
-            ul = UserLevel.BANNED;
+        UserStatus ul;
+        if (userStatus.equalsIgnoreCase("admin")) {
+            ul = UserStatus.ADMIN;
+        } else if (userStatus.equalsIgnoreCase("user")) {
+            ul = UserStatus.USER;
+        } else if (userStatus.equalsIgnoreCase("banned")) {
+            ul = UserStatus.BANNED;
+        } else if (userStatus.equalsIgnoreCase("locked")) {
+            ul = UserStatus.LOCKED;
         } else {
             throw new IllegalArgumentException("String cannot be converted to" +
-                    " UserLevel");
+                    " UserStatus");
         }
-        this.userLevel = ul;
+        this.userStatus = ul;
     }
 
     @Override
@@ -131,7 +136,7 @@ public class User {
             return false;
         } else if (!password.equals(u.password)) {
             return false;
-        } else if (!userLevel.equals(u.userLevel)) {
+        } else if (!userStatus.equals(u.userStatus)) {
             return false;
         } else {
             return true;

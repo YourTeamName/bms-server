@@ -32,7 +32,7 @@ public class MyResource {
         User user = new User();
 //        user.setUsername("jed1");
 //        user.setPassword("jed");
-//        user.setUserLevel(User.UserLevel.USER);
+//        user.setUserStatus(User.UserStatus.USER);
 //
 //        Profile profile = new Profile();
 //        profile.setEmail("jed@jedc.com");

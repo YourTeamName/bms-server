@@ -41,7 +41,7 @@ public class LoginResource {
         User user = null;
         try {
             UserDao userDao = new UserDaoImpl();
-            user = userDao.findById("jed1");
+            user = userDao.findById("user");
         } catch (SQLException e) {
             e.printStackTrace();
         }
