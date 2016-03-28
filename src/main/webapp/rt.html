@@ -1,6 +1,7 @@
 <html>
   <head>
-    <h1>This is a test file</h1>
+    <!--<meta http-equiv="Refresh" content="0; url=http://buzz-movie-selector.herokuapp.com" />-->
+    <h1>Hit the button below to get newest movie</h1>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
     <script>
@@ -10,20 +11,23 @@ var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
 // construct the uri with our apikey
 //var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
 var moviesSearchUrl = baseUrl + '/lists/movies/box_office.json?apikey=' + apikey + '&limit=10';
-var query = "New movies";
+var dvdSearchUrl = baseUrl + '/lists/dvds/new_releases.json?apikey=' + apikey + '&limit=10';
+var query1 = "New Movies";
+var query2 = "New Dvds";
 
 $(document).ready(function() {
-  $("button").click(function(){
+  $('#movie').click(function(){
 // send off the query
     $.ajax({
-      url: moviesSearchUrl + '&q=' + encodeURI(query),
+      url: moviesSearchUrl + '&q=' + encodeURI(query1),
       dataType: "jsonp",
-      success: searchCallback
+      success: movieSearchCallback
     });
   });
 });
   // callback for when we get back the results
-function searchCallback(data) {
+//$("body").css("background-color:#ff0000");
+function movieSearchCallback(data) {
  //$(document.body).append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
  $.each(movies, function(index, movie) {
@@ -33,10 +37,36 @@ function searchCallback(data) {
  });
 }
 
+$(document).ready(function() {
+  $('#dvd').click(function(){
+// send off the query
+    $.ajax({
+      url: dvdSearchUrl + '&q=' + encodeURI(query2),
+      dataType: "jsonp",
+      success: dvdSearchCallback
+    });
+  });
+});
+
+function dvdSearchCallback(data) {
+  var dvds = data.movies;
+  $.each(dvds, function(index, movie) {
+    $(document.body).append('<h1>' + movie.title + '</h1>');
+    $(document.body).append('<p>' + movie.synopsis + '</p>');
+    $(document.body).append('<img src="' + movie.posters.thumbnail + '" />');
+  });
+}
+
     </script>
 
   </head>
   <body>
-    <button>Get the newest movie</button>
+    <!--<div id="button-nav">-->
+      <!--<button class="button" type="button" data-btn="1">newestMovie</button>-->
+      <!--<button class="button" type="button" data-btn="2">newestDVD</button>-->
+
+    <!--</div>-->
+  <button type="submit" id="movie">nMovie</button>
+  <button type="submit" id="dvd">nDvd</button>
   </body>
 </html>
