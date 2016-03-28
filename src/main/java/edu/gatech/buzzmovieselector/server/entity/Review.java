@@ -1,15 +1,30 @@
 package edu.gatech.buzzmovieselector.server.entity;
 
-/**
- * Class for a movie review that has a rating and text evaluation of the movie
- * Each movie review also contains the movie it pertains to
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "review")
 public class Review {
 
+    @Id
+    @GeneratedValue
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name="user_id")
     private User user;
+    @Column(name = "content")
     private String content;
+    @Column(name = "rating")
     private Double rating;
+    @ManyToOne(fetch= FetchType.EAGER)
+    @JoinColumn(name="movie_id")
     private Movie movie;
 
     public Integer getId() {

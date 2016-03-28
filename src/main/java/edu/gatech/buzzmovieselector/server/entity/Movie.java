@@ -1,23 +1,33 @@
 package edu.gatech.buzzmovieselector.server.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Collection;
+import java.util.List;
 
-/**
- * Creates a movie object with name, year produced, and rating
- */
+@Entity
+@Table(name = "movie")
 public class Movie {
 
+    @Id
     private Integer id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "year")
     private Integer year;
+    @Column(name = "rating")
     private Double rating;
-    private Collection<Review> reviews;
+    @OneToMany(mappedBy="movie")
+    private List<Review> reviews;
 
-    public Collection<Review> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(Collection<Review> reviews) {
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 
