@@ -10,10 +10,10 @@ var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
 
 // construct the uri with our apikey
 //var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
-var moviesSearchUrl = baseUrl + '/lists/movies/box_office.json?apikey=' + apikey + '&limit=10';
+var moviesSearchUrl = baseUrl + '/lists/movies/opening.json?apikey=' + apikey + '&limit=10';
 var dvdSearchUrl = baseUrl + '/lists/dvds/new_releases.json?apikey=' + apikey + '&limit=10';
-var query1 = "New Movies";
-var query2 = "New Dvds";
+var query1 = "";
+var query2 = "";
 
 $(document).ready(function() {
   $('#movie').click(function(){
@@ -31,7 +31,7 @@ function movieSearchCallback(data) {
  //$(document.body).append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
  $.each(movies, function(index, movie) {
-   $(document.body).append('<h1>' + movie.title + '</h1>');
+   $(document.body).append('<h2>' + movie.title + '</h2>');
    $(document.body).append('<p>' + movie.synopsis + '</p>');
    $(document.body).append('<img src="' + movie.posters.thumbnail + '" />');
  });
@@ -40,6 +40,9 @@ function movieSearchCallback(data) {
 $(document).ready(function() {
   $('#dvd').click(function(){
 // send off the query
+    $('p').remove();
+    $('h2').remove();
+    $('img').remove();
     $.ajax({
       url: dvdSearchUrl + '&q=' + encodeURI(query2),
       dataType: "jsonp",
@@ -51,7 +54,7 @@ $(document).ready(function() {
 function dvdSearchCallback(data) {
   var dvds = data.movies;
   $.each(dvds, function(index, movie) {
-    $(document.body).append('<h1>' + movie.title + '</h1>');
+    $(document.body).append('<h2>' + movie.title + '</h2>');
     $(document.body).append('<p>' + movie.synopsis + '</p>');
     $(document.body).append('<img src="' + movie.posters.thumbnail + '" />');
   });
