@@ -1,7 +1,7 @@
 <html>
   <head>
     <!--<meta http-equiv="Refresh" content="0; url=http://buzz-movie-selector.herokuapp.com" />-->
-    <h1>Hit the button below to get newest movie</h1>
+    <h1>Hit the buttons below to get newest Movie or DVD</h1>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
     <script>
@@ -18,6 +18,9 @@ var query2 = "";
 $(document).ready(function() {
   $('#movie').click(function(){
 // send off the query
+    $('p').remove();
+    $('h2').remove();
+    $('img').remove();
     $.ajax({
       url: moviesSearchUrl + '&q=' + encodeURI(query1),
       dataType: "jsonp",
