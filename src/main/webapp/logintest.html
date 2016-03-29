@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Buzz Movie Selector</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#login").click(function () {
+            $("button").click(function () {
                 var settings = {
                     "async": true,
                     "crossDomain": true,
@@ -29,7 +27,7 @@
                             if (jqXHR.status == 204) {
                                 $("#div1").html('Username does not exist or wrong password');
                             } else {
-                                window.location = 'rt.html';
+                                $("#div1").html(JSON.stringify(data));
                             }
                         })
                         .fail(function (jqXHR, textStatus, errorThrown) {
@@ -39,12 +37,11 @@
         });
     </script>
 </head>
-<body>
 
-<h1>Welcome to Buzz Movie Selector!</h1>
+<body>
 Username:<input type="text" id="username"><br>
 Password:<input type="password" id="password"><br>
-<button type="submit" id="login">Login</button>
+<button>Login</button>
 
 <div id="div1"><h2>Will display user info here if the login was success. You can test this with the username "user" and
     password "pass"</h2></div>
