@@ -36,8 +36,9 @@
                 $.ajax(settings)
                         .done(function (data, responseText, jqXHR) {
                             if (jqXHR.status == 204) {
-                                window.location = '/';
+                                alert("Sorry, username has been used. Please try another username.");
                             } else {
+                                window.location = '/';
                             }
                         })
                         .fail(function (jqXHR, textStatus, errorThrown) {

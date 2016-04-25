@@ -17,12 +17,15 @@ public class RegisterResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User register(User user) {
-        if (user.getUsername() == null || user.getPassword() == null) {
+        if ("".equals(user.getUsername()) || "".equals(user.getPassword())) {
             return null;
         }
         User newUser = null;
         try {
             UserDao userDao = new UserDaoImpl();
+            if(userDao.findById(user.getUsername()) != null) {
+                return null;
+            }
             userDao.createOrUpdate(user);
             newUser = userDao.findById(user.getUsername());
         } catch (SQLException e) {
