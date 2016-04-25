@@ -8,8 +8,7 @@ import java.sql.SQLException;
 /**
  * Hibernate implementation of the UserDao interface.
  */
-public class UserDaoImpl extends DaoImpl<User, String>
-        implements UserDao {
+public class UserDaoImpl extends DaoImpl<User, String> implements UserDao {
 
     // this constructor must be defined
     public UserDaoImpl() throws SQLException {
