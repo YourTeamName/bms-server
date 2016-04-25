@@ -2,6 +2,7 @@ package edu.gatech.buzzmovieselector.server.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,7 +21,7 @@ public class Movie {
     private Integer year;
     @Column(name = "rating")
     private Double rating;
-    @OneToMany(mappedBy="movie")
+    @OneToMany(mappedBy="movie", fetch = FetchType.EAGER)
     private List<Review> reviews;
 
     public List<Review> getReviews() {
