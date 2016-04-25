@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Path("/rateMovie")
 public class RateMovieResource {
@@ -28,6 +29,9 @@ public class RateMovieResource {
             movie = movieDao.findById(review.getMovie().getId());
             if (movie == null) {
                 movie = review.getMovie();
+                ArrayList<Review> newReviews = new ArrayList<Review>();
+                newReviews.add(review);
+                movie.setReviews(newReviews);
                 movieDao.createOrUpdate(movie);
             }
             reviewDao.createOrUpdate(review);
