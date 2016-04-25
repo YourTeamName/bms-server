@@ -1,6 +1,5 @@
 package edu.gatech.buzzmovieselector.server.resource;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import edu.gatech.buzzmovieselector.server.dao.UserDao;
 import edu.gatech.buzzmovieselector.server.dao.impl.UserDaoImpl;
 import edu.gatech.buzzmovieselector.server.entity.User;
