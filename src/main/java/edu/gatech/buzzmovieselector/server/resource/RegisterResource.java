@@ -17,6 +17,9 @@ public class RegisterResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User register(User user) {
+        if (user.getUsername() == null || user.getPassword() == null) {
+            return null;
+        }
         User newUser = null;
         try {
             UserDao userDao = new UserDaoImpl();

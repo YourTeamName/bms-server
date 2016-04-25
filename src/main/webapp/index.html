@@ -38,19 +38,19 @@
                             $("#div1").html('login error: ' + textStatus);
                         });
             });
-            $("#register").click(function() {
-                $(location).attr('href','register.html')
+            $("#register").click(function () {
+                $(location).attr('href', 'register.html')
             });
         });
     </script>
 </head>
 <body>
-  <div class="navbar navbar-static-top navbar-default" role="navigation">
+<div class="navbar navbar-static-top navbar-default" role="navigation">
     <div class="container">
-      <a class="navbar-brand" href="/">Buzz Movie Selector</a>
+        <a class="navbar-brand" href="/">Buzz Movie Selector</a>
     </div>
-  </div>
-  <div class="container">
+</div>
+<div class="container">
     <div class="page-header">
         <h3>Login</h3>
     </div>
@@ -59,28 +59,30 @@
             <h2 class="panel-title">with credentials</h2>
         </div>
         <div class="panel-body">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="email-addon">@</span>
-                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" aria-describedby="email-addon">
-                </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="password-addon">*</span>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" aria-describedby="password-addon">
-                </div>
-                <br>
-                <input type="submit" value="Login" class="btn btn-primary" id="login">
-                <a class="btn btn-primary" id="register">Register</a>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="email-addon">@</span>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Username"
+                       aria-describedby="email-addon">
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="password-addon">*</span>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                       aria-describedby="password-addon">
+            </div>
+            <br>
+            <input type="submit" value="Login" class="btn btn-primary" id="login">
+            <a class="btn btn-primary" id="register">Register</a>
         </div>
     </div>
-    
+
     <div id="div1"></div>
-  <div>
+</div>
 </body>
 <footer>
-  <div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-      <p class="navbar-text pull-left">Buzz Movie Selector</p>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text pull-left">Buzz Movie Selector</p>
+        </div>
     </div>
-  </div>
 </footer>
 </html>
