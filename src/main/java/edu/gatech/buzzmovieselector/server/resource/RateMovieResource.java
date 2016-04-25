@@ -1,10 +1,11 @@
 package edu.gatech.buzzmovieselector.server.resource;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import edu.gatech.buzzmovieselector.server.dao.UserDao;
-import edu.gatech.buzzmovieselector.server.dao.impl.UserDaoImpl;
+import edu.gatech.buzzmovieselector.server.dao.MovieDao;
+import edu.gatech.buzzmovieselector.server.dao.ReviewDao;
+import edu.gatech.buzzmovieselector.server.dao.impl.MovieDaoImpl;
+import edu.gatech.buzzmovieselector.server.dao.impl.ReviewDaoImpl;
+import edu.gatech.buzzmovieselector.server.entity.Movie;
 import edu.gatech.buzzmovieselector.server.entity.Review;
-import edu.gatech.buzzmovieselector.server.entity.User;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -18,19 +19,19 @@ public class RateMovieResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User login(Review review) {
-        String username = json.get("username").asText();
-        String password = json.get("password").asText();
-        User user = null;
+    public Review rateMovie(Review review) {
+        Review newReview = null;
+        Movie movie = null;
         try {
-            UserDao userDao = new UserDaoImpl();
-            user = userDao.findById(username);
+            ReviewDao reviewDao = new ReviewDaoImpl();
+            MovieDao movieDao = new MovieDaoImpl();
+            reviewDao.createOrUpdate(review);
+            movie = movieDao.findById(review.getMovie().getId());
+            movie.getReviews().add(review);
+            movieDao.createOrUpdate(movie);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (user == null || !user.getPassword().equals(password)) {
-            user = null;
-        }
-        return user;
+        return review;
     }
 }
