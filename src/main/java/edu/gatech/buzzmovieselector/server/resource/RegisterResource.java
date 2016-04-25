@@ -17,7 +17,7 @@ public class RegisterResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User register(User user) {
-        if ("".equals(user.getUsername()) || "".equals(user.getPassword())) {
+        if ("".equals(user.getUsername())) {
             return null;
         }
         User newUser = null;
