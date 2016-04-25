@@ -25,8 +25,12 @@ public class RateMovieResource {
         try {
             ReviewDao reviewDao = new ReviewDaoImpl();
             MovieDao movieDao = new MovieDaoImpl();
-            reviewDao.createOrUpdate(review);
             movie = movieDao.findById(review.getMovie().getId());
+            if (movie == null) {
+                movie = review.getMovie();
+                movieDao.createOrUpdate(movie);
+            }
+            reviewDao.createOrUpdate(review);
             movie.getReviews().add(review);
             movieDao.createOrUpdate(movie);
         } catch (SQLException e) {
