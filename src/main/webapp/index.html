@@ -38,10 +38,8 @@
                             $("#div1").html('login error: ' + textStatus);
                         });
             });
-            $("Register").click(function() {
-                $.ajax({
-                    window.location = 'register.html';
-                });
+            $("#register").click(function() {
+                $(location).attr('href','register.html')
             });
         });
     </script>
@@ -71,7 +69,7 @@
                 </div>
                 <br>
                 <input type="submit" value="Login" class="btn btn-primary" id="login">
-                <a href="#" class="btn btn-primary">Register</a>
+                <a class="btn btn-primary" id="register">Register</a>
         </div>
     </div>
     
