@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register User</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#submitRegister").click(function () {
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "http://buzz-movie-selector.herokuapp.com/service/register",
+                    "method": "POST",
+                    "headers": {
+                        "content-type": "application/json"
+                    },
+                    "processData": false,
+                    "data": JSON.stringify(
+                            {
+                                "username": $("#username").val(),
+                                "password": $("#password").val(),
+                                "userStatus": "USER",
+                                "profile":
+                                    [
+                                        {
+                                            "firstName": $("#firstName").val(),
+                                            "lastName": $("#lastName").val(),
+                                            "major": $("#major").val(),
+                                            "email": $("#email").val(),
+                                        }
+
+                                    ]
+                            }
+                    )
+                };
+
+                $.ajax(settings)
+                        .done(function (data, responseText, jqXHR) {
+                            if (jqXHR.status == 204) {
+                                $("#div1").html('Username does not exist or wrong password');
+                            } else {
+//                                window.location = 'rt.html';
+                            }
+                        })
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                            $("#div1").html('error: ' + textStatus);
+                        });
+            });
+        });
+    </script>
+</head>
+<body>
+username: <input type="text" id="username"><br>
+password: <input type="password" id="password"><br>
+firstName: <input type="text" id="firstName"><br>
+lastName: <input type="text" id="lastName"><br>
+major: <input type="text" id="major"><br>
+email: <input type="text" id="email"><br>
+<button type="submit" id="submitRegister">Submit!</button>
+</body>
+</html>
