@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#banUser").click(function () {
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "http://buzz-movie-selector.herokuapp.com/service/banUser",
+                    "method": "POST",
+                    "headers": {
+                        "content-type": "application/json"
+                    },
+                    "processData": false,
+                    "data": JSON.stringify(
+                            {
+                                "username": $("#username").val()
+                            }
+                    )
+                };
+
+                $.ajax(settings)
+                        .done(function (data, responseText, jqXHR) {
+                            if (jqXHR.status == 204) {
+                                $("#div1").html('Username does not exist or wrong password');
+                            } else {
+//                                window.location = 'rt.html';
+                            }
+                        })
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                            $("#div1").html('error: ' + textStatus);
+                        });
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="navbar navbar-static-top navbar-default" role="navigation">
+    <div class="container">
+        <a class="navbar-brand" href="/">Buzz Movie Selector</a>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Profile Info</h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    Username:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="username" class="form-control" value="user" readonly/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    First Name:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="firstName" class="form-control" value="George" readonly/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    Last Name:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="lastName" class="form-control" value="Burdell" readonly/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    Major:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="major" class="form-control" value="Computer Science" readonly/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    Email:
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="email" class="form-control" value="georgeburdell@gatech.edu" readonly/>
+                </div>
+            </div>
+            <br>
+            <button class="btn btn-primary" onclick="location.href='/'" id="banUser">Ban User</button>
+            <button class="btn btn-primary" onclick="location.href='/'">Cancel</button>
+        </div>
+    </div>
+</div>
+
+</body>
+<footer>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text pull-left">Buzz Movie Selector</p>
+        </div>
+    </div>
+</footer>
+</html>
