@@ -42,17 +42,19 @@
                 )
             };
 
-            $.ajax(settings){
-            var searchback = data.movies;
-            $.each(searchback, function (index, movie) {
-                $("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
-            });}
+            $.ajax(settings)
+            {
+                var searchback = data.movies;
+                $.each(searchback, function (index, movie) {
+                    $("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
+                });
+            }
         });
     });
 
 </script>
-<button class="submit" id="get">Get User</button>
-<button onclick="location.href='/banUser.html'" id="banUser">Ban User</button>
+<button class="btn btn-primary" id="get">Get User</button>
+<button class="btn btn-primary" onclick="location.href='/banUser.html'" id="banUser">Ban User</button>
 
 </body>
 </html>
