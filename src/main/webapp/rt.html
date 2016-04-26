@@ -22,13 +22,8 @@
         //var query3 = "Forrest";
         $(document).ready(function () {
             $('#movie').click(function () {
-<<<<<<< HEAD
 // send off the query
                 $("div.panel").remove();
-=======
-	// send off the query
-	$('#results').innerHTML="";
->>>>>>> 06018c5cb5ce2e39f4ac61ba8329d02d89b1619e
                 $.ajax({
                     url: moviesSearchUrl + '&q=' + encodeURI(query1),
                     dataType: "jsonp",
@@ -48,13 +43,8 @@
 
         $(document).ready(function () {
             $('#dvd').click(function () {
-<<<<<<< HEAD
 // send off the query
                 $("div.panel").remove();
-=======
-	// send off the query
-	$('#results').innerHTML="";
->>>>>>> 06018c5cb5ce2e39f4ac61ba8329d02d89b1619e
                 $.ajax({
                     url: dvdSearchUrl + '&q=' + encodeURI(query2),
                     dataType: "jsonp",
@@ -98,23 +88,16 @@
         <a class="navbar-brand" href="/">Buzz Movie Selector</a>
     </div>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <button class="btn btn-default" type="submit" id="movie">Get New Movies</button></div>
-    <div class="col-md-4">
-      <button class="btn btn-default" type="submit" id="dvd">Get New DVDs</button></div>
-    <div class="col-md-4">
+
+<button type="submit" id="movie">Get New Movies</button>
+<button type="submit" id="dvd">Get New DVDs</button>
+<br>
 Search Movie <input type="text" id="searchvar">
-<button class="btn btn-default" type="submit" id="search">Search</button>
-</div>
-</div>
+<button type="submit" id="search">Search</button>
 <br>
-<button class="btn" onclick="location.href='/'" id="logout">Logout</button>
+<button onclick="location.href='/'" id="logout">Logout</button>
 <br>
-<button onclick="location.href='/updateProfile.html'" id="editProfile">Edit Profile</button>
 <div id="results"></div>
-</div>
 </body>
 <footer>
     <div class="navbar navbar-default navbar-fixed-bottom">
