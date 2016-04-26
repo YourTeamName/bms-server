@@ -49,12 +49,83 @@
     </script>
 </head>
 <body>
-username: <input type="text" id="username"><br>
-password: <input type="password" id="password"><br>
-firstName: <input type="text" id="firstName"><br>
-lastName: <input type="text" id="lastName"><br>
-major: <input type="text" id="major"><br>
-email: <input type="text" id="email"><br>
-<button type="submit" id="submitRegister">Update Profiel</button>
+ <div class="navbar navbar-static-top navbar-default" role="navigation">
+    <div class="container">
+      <a class="navbar-brand" href="/">Buzz Movie Selector</a>
+    </div>
+   </div>
+<div class="container">
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Profile Info</h2>
+        </div>
+        <div class="panel-body">
+	  <div class="row">
+	    <div class="col-md-4">
+	      Username:
+	    </div>
+	    <div class="col-md-8">
+	      <input type="text" id="username" class="form-control" />
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-md-4">
+	      Password:
+	    </div>
+	    <div class="col-md-8">
+	      <input type="password" id="password" class="form-control" />
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-md-4">
+	      First Name:
+	    </div>
+	    <div class="col-md-8">
+	      <input type="text" id="firstName" class="form-control" />
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-md-4">
+	      Last Name:
+	    </div>
+	    <div class="col-md-8">
+	      <input type="text" id="lastName" class="form-control" />
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-md-4">
+	      Major:
+	    </div>
+	    <div class="col-md-8">
+	      <input type="text" id="major" class="form-control" />
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="col-md-4">
+	      Email:
+	    </div>
+	    <div class="col-md-8">
+	      <input type="text" id="email" class="form-control" />
+	    </div>
+	    </div>
+            <br>
+	    <button class="btn btn-primary" id="submitRegister">Update Profile</button>
+            <button class="btn btn-primary" onclick="location.href='/'">Cancel</button>
+        </div>
+</div>
+</div>
+
 </body>
+<footer>
+  <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">Buzz Movie Selector</p>
+    </div>
+  </div>
+</footer>
 </html>
