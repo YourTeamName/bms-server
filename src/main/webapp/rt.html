@@ -14,13 +14,16 @@
         //var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
         var moviesSearchUrl = baseUrl + '/lists/movies/opening.json?apikey=' + apikey + '&limit=10';
         var dvdSearchUrl = baseUrl + '/lists/dvds/new_releases.json?apikey=' + apikey + '&limit=10';
-        var generalSearchUrl = baseUrl + 'movies.json?apikey=' + apikey;
+        var generalSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
+       // http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=xe4h4b7u4wmxay2d75366e4e&q=Gump&page_limit=1
         var query1 = "";
         var query2 = "";
         var query3 = $("#searchvar").val();
+        //var query3 = "Forrest";
         $(document).ready(function () {
             $('#movie').click(function () {
 // send off the query
+                $("div.panel").remove();
                 $.ajax({
                     url: moviesSearchUrl + '&q=' + encodeURI(query1),
                     dataType: "jsonp",
@@ -41,6 +44,7 @@
         $(document).ready(function () {
             $('#dvd').click(function () {
 // send off the query
+                $("div.panel").remove();
                 $.ajax({
                     url: dvdSearchUrl + '&q=' + encodeURI(query2),
                     dataType: "jsonp",
@@ -59,8 +63,9 @@
         $(document).ready(function () {
             $('#search').click(function () {
 // send off the query
+                $("div.panel").remove();
                 $.ajax({
-                    url: dvdSearchUrl + '&q=' + encodeURI(query3) + '&page_limit=1',
+                    url: generalSearchUrl + '&q=' + $('#searchvar').val() + '&page_limit=5',
                     dataType: "jsonp",
                     success: generalSearch
                 });
@@ -92,7 +97,6 @@ Search Movie <input type="text" id="searchvar">
 <br>
 <button onclick="location.href='/'" id="logout">Logout</button>
 <br>
-<button onclick="location.href='/updateProfile.html'" id="editProfile">Edit Profile</button>
 <div id="results"></div>
 </body>
 <footer>

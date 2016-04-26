@@ -3,10 +3,11 @@
 <head>
     <meta charset= "UTF-8">
     <link rel="stylesheet" type="text/css" href="style2.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-    <title>Star rating using pure CSS</title>
+    <title>Movie Rating</title>
     <script>
         $(document).ready(function () {
             $("#rate").click(function () {
@@ -69,9 +70,22 @@
     </script>
 </head>
 <body>
+  <div class="navbar navbar-static-top navbar-default" role="navigation">
+    <div class="container">
+        <a class="navbar-brand" href="/">Buzz Movie Selector</a>
+    </div>
+</div>
 
-Username: <input type="text" id="username">
-MovieID: <input type="text" id="mID"><br>
+<div class="container">
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Movie Rating</h2>
+        </div>
+        <div class="panel-body">
+            <input type="hidden" value="user" id="username">
+	    <input type="hidden" id="mID" value="1579234980">
+	    <div class="row">
+	      <div class="col-md-4">Rating:</div><div class="col-md-8">
 <div class="rate" id="star">
     <input type="radio" id="star5" name="rate" value=5 /><label for="star5" title="text">5 stars</label>
     <input type="radio" id="star4" name="rate" value=4 /><label for="star4" title="text">4 stars</label>
@@ -81,9 +95,17 @@ MovieID: <input type="text" id="mID"><br>
 
     <input type="radio" id="star1" name="rate" value=1 /><label for="star1" title="text">1 star</label>
 </div>
-Comment: <textarea type="text" rows="4" cols="50" id="content"></textarea><br>
-<button type="submit" id="rate">Rate</button>
-
+</div>
+	    </div>
+	    <div class="row">
+<div class="col-md-4">Comment: </div><div class="col-md-8"><textarea type="text" rows="4" cols="50" id="content"></textarea></div></div><br>
+            <br>
+	    <div class="row">
+              <div class="col-md-4"><button class="btn btn-primary" id="rate">Rate</button></div>
+	      </div>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>
