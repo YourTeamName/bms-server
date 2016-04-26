@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 import java.util.List;
 
-@Path("/userList")
+@Path("/userlist")
 public class UserListResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
