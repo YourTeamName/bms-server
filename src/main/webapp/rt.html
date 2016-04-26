@@ -14,9 +14,10 @@
         //var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
         var moviesSearchUrl = baseUrl + '/lists/movies/opening.json?apikey=' + apikey + '&limit=10';
         var dvdSearchUrl = baseUrl + '/lists/dvds/new_releases.json?apikey=' + apikey + '&limit=10';
+        var generalSearchUrl = baseUrl + 'movies.json?apikey=' + apikey;
         var query1 = "";
         var query2 = "";
-
+        var query3 = $("#searchvar").val();
         $(document).ready(function () {
             $('#movie').click(function () {
 // send off the query
@@ -51,6 +52,24 @@
         function dvdSearchCallback(data) {
             var dvds = data.movies;
             $.each(dvds, function (index, movie) {
+                $("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
+            });
+        }
+
+        $(document).ready(function () {
+            $('#search').click(function () {
+// send off the query
+                $.ajax({
+                    url: dvdSearchUrl + '&q=' + encodeURI(query3) + '&page_limit=1',
+                    dataType: "jsonp",
+                    success: generalSearch
+                });
+            });
+        });
+
+        function generalSearch(data) {
+            var searchback = data.movies;
+            $.each(searchback, function (index, movie) {
                 $("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
             });
         }

@@ -10,9 +10,8 @@
     <script>
         $(document).ready(function () {
             $("#rate").click(function () {
-                var user = {
 
-                };var settings = {
+                var settings = {
                     "async": true,
                     "crossDomain": true,
                     "url": "http://buzz-movie-selector.herokuapp.com/service/rateMovie",
@@ -21,9 +20,11 @@
                         "content-type": "application/json"
                     },
                     "processData": false,
+
                     "data": JSON.stringify(
                             {
                                 "rating": $("#star").val(),
+
                                 "content": $("#content").val(),
                                 "movie":
                                 {
@@ -49,6 +50,21 @@
                             $("#div1").html('error: ' + textStatus);
                         });
             });
+//                if ($("#star").attr('id') == "star"){
+//                    $("#rate").alert("Got it");
+//                }
+
+            $( "input[type='radio']" ).change(function() //on change radio buttons
+            {
+
+                alert('Test');
+                if($('input[name=rate]:checked').val() != '') //Testing value
+                {
+
+                    $('input[name=rate]:checked').val(1);
+
+                }
+            });
         });
     </script>
 </head>
@@ -57,13 +73,13 @@
 Username: <input type="text" id="username">
 MovieID: <input type="text" id="mID"><br>
 <div class="rate" id="star">
-    <input type="radio" id="star5" name="rate" value="5" /><label for="star5" title="text">5 stars</label>
-    <input type="radio" id="star4" name="rate" value="4" /><label for="star4" title="text">4 stars</label>
-    <input type="radio" id="star3" name="rate" value="3" /><label for="star3" title="text">3 stars</label>
-    <input type="radio" id="star2" name="rate" value="2" /><label for="star2" title="text">2 stars</label>
+    <input type="radio" id="star5" name="rate" value=5 /><label for="star5" title="text">5 stars</label>
+    <input type="radio" id="star4" name="rate" value=4 /><label for="star4" title="text">4 stars</label>
+    <input type="radio" id="star3" name="rate" value=3 /><label for="star3" title="text">3 stars</label>
+    <input type="radio" id="star2" name="rate" value=2 /><label for="star2" title="text">2 stars</label>
     <!--<input type="radio" id="star1.5" name="rate" value="1.5" /><label for="star1.5" title="text">1.5 stars</label>-->
 
-    <input type="radio" id="star1" name="rate" value="1" /><label for="star1" title="text">1 star</label>
+    <input type="radio" id="star1" name="rate" value=1 /><label for="star1" title="text">1 star</label>
 </div>
 Comment: <textarea type="text" rows="4" cols="50" id="content"></textarea><br>
 <button type="submit" id="rate">Rate</button>
