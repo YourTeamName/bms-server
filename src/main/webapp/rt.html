@@ -1,11 +1,10 @@
 <html>
   <head>
-    <title>Buzz Movie Selector</title>
+    <title>Rotten Tomatoes</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <link href="style.css" rel="stylesheet">
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!--<meta http-equiv="Refresh" content="0; url=http://buzz-movie-selector.herokuapp.com" />-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
     <script>
 var apikey = "xe4h4b7u4wmxay2d75366e4e";
@@ -21,9 +20,6 @@ var query2 = "";
 $(document).ready(function() {
   $('#movie').click(function(){
 // send off the query
-    $('p').remove();
-    $('h2').remove();
-    $('img').remove();
     $.ajax({
       url: moviesSearchUrl + '&q=' + encodeURI(query1),
       dataType: "jsonp",
@@ -36,19 +32,14 @@ $(document).ready(function() {
 function movieSearchCallback(data) {
  //$(document.body).append('Found ' + data.total + ' results for ' + query);
  var movies = data.movies;
- $.each(movies, function(index, movie) {
-   $(document.body).append('<h2>' + movie.title + '</h2>');
-   $(document.body).append('<p>' + movie.synopsis + '</p>');
-   $(document.body).append('<img src="' + movie.posters.thumbnail + '" />');
- });
+ $.each(movies,  function(index, movie) {
+$("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
+  });
 }
 
 $(document).ready(function() {
   $('#dvd').click(function(){
 // send off the query
-    $('p').remove();
-    $('h2').remove();
-    $('img').remove();
     $.ajax({
       url: dvdSearchUrl + '&q=' + encodeURI(query2),
       dataType: "jsonp",
