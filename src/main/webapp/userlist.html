@@ -5,6 +5,54 @@
     <title>User List</title>
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<link href="style.css" rel="stylesheet">
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<!--<meta http-equiv="Refresh" content="0; url=http://buzz-movie-selector.herokuapp.com" />-->
+
+<script>
+    var baseUrl = "http://buzz-movie-selector.herokuapp.com/service/userlist";
+
+    // construct the uri with our apikey
+    //var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
+
+    $(document).ready(function () {
+        $("#submitRegister").click(function () {
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "http://buzz-movie-selector.herokuapp.com/service/register",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/json"
+                },
+                "processData": false,
+                "data": JSON.stringify(
+                        {
+                            "username": $("#username").val(),
+                            "password": $("#password").val(),
+                            "userStatus": "USER",
+                            "profile": {
+                                "firstName": $("#firstName").val(),
+                                "lastName": $("#lastName").val(),
+                                "major": $("#major").val(),
+                                "email": $("#email").val()
+                            }
+                        }
+                )
+            };
+
+            $.ajax(settings){
+            var searchback = data.movies;
+            $.each(searchback, function (index, movie) {
+                $("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
+            });}
+        });
+    });
+
+</script>
+<button class="submit" id="get">Get User</button>
+<button id="submit2">Get User</button>
 
 </body>
 </html>
