@@ -1,94 +1,82 @@
 <html>
-<head>
-    <title>Buzz Movie Selector</title>
+  <head>
+    <title>Rotten Tomatoes</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <link href="style.css" rel="stylesheet">
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!--<meta http-equiv="Refresh" content="0; url=http://buzz-movie-selector.herokuapp.com" />-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
     <script>
-        var apikey = "xe4h4b7u4wmxay2d75366e4e";
-        var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
+var apikey = "xe4h4b7u4wmxay2d75366e4e";
+var baseUrl = "http://api.rottentomatoes.com/api/public/v1.0";
 
-        // construct the uri with our apikey
-        //var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
-        var moviesSearchUrl = baseUrl + '/lists/movies/opening.json?apikey=' + apikey + '&limit=10';
-        var dvdSearchUrl = baseUrl + '/lists/dvds/new_releases.json?apikey=' + apikey + '&limit=10';
-        var query1 = "";
-        var query2 = "";
+// construct the uri with our apikey
+//var moviesSearchUrl = baseUrl + '/movies.json?apikey=' + apikey;
+var moviesSearchUrl = baseUrl + '/lists/movies/opening.json?apikey=' + apikey + '&limit=10';
+var dvdSearchUrl = baseUrl + '/lists/dvds/new_releases.json?apikey=' + apikey + '&limit=10';
+var query1 = "";
+var query2 = "";
 
-        $(document).ready(function () {
-            $('#movie').click(function () {
+$(document).ready(function() {
+  $('#movie').click(function(){
 // send off the query
-                $('p').remove();
-                $('h2').remove();
-                $('img').remove();
-                $.ajax({
-                    url: moviesSearchUrl + '&q=' + encodeURI(query1),
-                    dataType: "jsonp",
-                    success: movieSearchCallback
-                });
-            });
-        });
-        // callback for when we get back the results
-        //$("body").css("background-color:#ff0000");
-        function movieSearchCallback(data) {
-            //$(document.body).append('Found ' + data.total + ' results for ' + query);
-            var movies = data.movies;
-            $.each(movies, function (index, movie) {
-                $(document.body).append('<h2>' + movie.title + '</h2>');
-                $(document.body).append('<p>' + movie.synopsis + '</p>');
-                $(document.body).append('<img src="' + movie.posters.thumbnail + '" />');
-            });
-        }
+    $.ajax({
+      url: moviesSearchUrl + '&q=' + encodeURI(query1),
+      dataType: "jsonp",
+      success: movieSearchCallback
+    });
+  });
+});
+  // callback for when we get back the results
+//$("body").css("background-color:#ff0000");
+function movieSearchCallback(data) {
+ //$(document.body).append('Found ' + data.total + ' results for ' + query);
+ var movies = data.movies;
+ $.each(movies,  function(index, movie) {
+$("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
+  });
+}
 
-        $(document).ready(function () {
-            $('#dvd').click(function () {
+$(document).ready(function() {
+  $('#dvd').click(function(){
 // send off the query
-                $('p').remove();
-                $('h2').remove();
-                $('img').remove();
-                $.ajax({
-                    url: dvdSearchUrl + '&q=' + encodeURI(query2),
-                    dataType: "jsonp",
-                    success: dvdSearchCallback
-                });
-            });
-        });
+    $.ajax({
+      url: dvdSearchUrl + '&q=' + encodeURI(query2),
+      dataType: "jsonp",
+      success: dvdSearchCallback
+    });
+  });
+});
 
-        function dvdSearchCallback(data) {
-            var dvds = data.movies;
-            $.each(dvds, function (index, movie) {
-                $("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
-            });
-        }
+function dvdSearchCallback(data) {
+  var dvds = data.movies;
+$.each(dvds, function(index, movie) {
+$("#results").append('<div class="panel panel-default"><div class="panel-heading"><h2 class="panel-title">' + movie.title + '</h2></div><div class="panel-body"><div class="row"><div class="col-sm-4"><img src="' + movie.posters.thumbnail + '" /></div><div class="col-sm-8">' + movie.synopsis + '</div></div></div></div>');
+  });
+}
 
     </script>
 
-</head>
-<body>
-<div class="navbar navbar-static-top navbar-default" role="navigation">
+  </head>
+  <body>
+    <div class="navbar navbar-static-top navbar-default" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="/">Buzz Movie Selector</a>
+      <a class="navbar-brand" href="/">Buzz Movie Selector</a>
     </div>
-</div>
-
-<button type="submit" id="movie">Get New Movies</button>
-<button type="submit" id="dvd">Get New DVDs</button>
-<br>
-Search Movie <input type="text" id="searchvar">
-<button type="submit" id="search">Search</button>
-<br>
-<button onclick="location.href='/'" id="logout">Logout</button>
-<br>
-<div id="results"></div>
-</body>
-<footer>
-    <div class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-            <p class="navbar-text pull-left">Buzz Movie Selector</p>
-        </div>
     </div>
+    
+  <button type="submit" id="movie">Get New Movies</button>
+  <button type="submit" id="dvd">Get New DVDs</button><br>
+  Search Movie <input type="text" id="searchvar">
+  <button type="submit" id="search">Search</button><br>
+  <button onclick="location.href='/'" id="logout">Logout</button><br>
+  <div id="results"></div>
+  </body>
+  <footer>
+  <div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+      <p class="navbar-text pull-left">Buzz Movie Selector</p>
+    </div>
+  </div>
 </footer>
 </html>
