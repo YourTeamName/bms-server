@@ -24,6 +24,7 @@ public class BanUserResource {
             UserDao userDao = new UserDaoImpl();
             theUser = userDao.findById(user.getUsername());
             theUser.setUserStatus(User.UserStatus.BANNED);
+            userDao.update(theUser);
         } catch (SQLException e) {
             e.printStackTrace();
         }
